@@ -1,8 +1,7 @@
 <?php
 session_start();
 if(isset($_SESSION['username'])){
-    echo "<h1> ini Halaman Admin </user>";
-    echo $_SESSION["username"];
+    echo "<br />";
 }
 ?>
 <!DOCTYPE html>
@@ -21,9 +20,14 @@ if(isset($_SESSION['username'])){
 $db = new PDO("mysql:host=localhost;dbname=rumahsakit", 'root', '');
 $query = $db->query("SELECT * FROM user");
 ?>
-<div class="container-sm">
+<div class="container">
+    <div class="col">
+    <?php echo "<h1> Selamat Datang Admin, </user>";?>
+    <?php echo $_SESSION["username"];?>
+    <br>
+    <h1>Data Pengguna</h1>
 <a href="tambah.php">Tambah User</a>
-<table border="1" cellpadding="10" cellspacing="0" class="table-primary table-striped">
+<table border="1" cellpadding="10" cellspacing="0" class="table table-dark table-striped">
     <tr>
         <th>Id</th>
         <th>Username</th>
@@ -46,10 +50,11 @@ $query = $db->query("SELECT * FROM user");
     </td>
    </tr>
     <?php endwhile ?>
-    <br>
+    </div>
+</div>
 <form action="hapus_session.php">
         <button onclick="alert('Anda Telah Logout')"class="btn btn-outline-primary">Logout</button>
     </form>
-    <br>
+
 </body>
 </html>
